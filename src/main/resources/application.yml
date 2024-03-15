@@ -1,0 +1,37 @@
+server:
+  port: 80
+# mysql配置
+spring:
+  # 配置日期格式化
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss  #时间戳统一转换为指定格式
+    time-zone: GMT+8  # 时区修改为
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # session配置
+  server:
+    servlet:
+      session:
+        timeout: 1800
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+  global-config:
+    db-config:
+      id-type: assign_id
+      # 逻辑删除的字段
+      logic-delete-field: delFlag
+      # 代表已删除的值
+      logic-delete-value: 1
+      # 代表未删除的值
+      logic-not-delete-value: 0
